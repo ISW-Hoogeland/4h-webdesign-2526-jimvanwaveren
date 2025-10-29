@@ -1,27 +1,152 @@
- logically for better readability */
-body {
-   background-color: #fff;
-   color: ;
-   font-family: ;
-   margin: ;
-   line-height: ;
+:root{
+  /* kleur- en fontvariabelen (week 3) */
+  --bg: #050505;
+  --panel: #0f0f10;
+  --primary: #1f6feb;
+  --accent: #0ea5a2;
+  --text: #eeeef0;
+  --muted: #bdbcbc;
+  --accent-2: #ffffff;
+  --container-max: 920px;
+  --serif: Georgia, "Times New Roman", Times, serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
-h1 {
-background-color: ;
-color: ;
-padding: ;
-border-radius: ;
-text-align: ;
-font-size: ;
+/* ...existing reset rules... */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:var(--serif);
+  color:var(--text);
+  background:var(--bg);
+  display:grid;
+  grid-template-rows: auto auto 1fr auto; /* header, nav, main, footer */
+  grid-template-areas:
+    "header"
+    "nav"
+    "main"
+    "footer";
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
 }
 
-h2 {
-color: ;
-font-size: ;
-border-bottom: ;
-padding-bottom: ;
-margin-top: ;
-
+/* container */
+.container{
+  width:90%;
+  max-width:var(--container-max);
+  margin:0 auto;
 }
 
+/* header - elegante, gothic uitstraling */
+.site-header{
+  grid-area: header;
+  padding:28px 0;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+}
+.site-title{
+  margin:0;
+  font-size:2.1rem;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  font-weight:700;
+  color:var(--accent-2);
+  display:inline-block;
+  position:relative;
+  padding-left:46px;
+  line-height:1;
+}
+/* ornament / logo-achtig symbool links van titel */
+.site-title::before{
+  content: "✠";
+  position:absolute;
+  left:0;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:1.6rem;
+  color:var(--accent);
+  background:transparent;
+  width:36px;
+  height:36px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,0.06);
+}
+
+/* tagline subtiel */
+.site-tagline{
+  margin:6px 0 0;
+  color:var(--muted);
+  font-size:0.85rem;
+  font-family:var(--sans);
+}
+
+/* nav - sterk, gecentreerd, uppercase */
+.site-nav{
+  grid-area: nav;
+  background:var(--panel);
+  padding:12px 0;
+  border-bottom:3px solid #0b0b0b;
+}
+.site-nav .menu{
+  list-style:none;
+  display:flex;
+  gap:28px;
+  margin:0;
+  padding:6px 0;
+  align-items:center;
+  justify-content:center;
+}
+.site-nav .menu a{
+  text-decoration:none;
+  color:var(--muted);
+  padding:10px 16px;
+  text-transform:uppercase;
+  font-weight:600;
+  letter-spacing:0.14em;
+  border-radius:6px;
+  font-family:var(--sans);
+}
+.site-nav .menu a[aria-current="page"],
+.site-nav .menu a:hover{
+  color:var(--accent-2);
+  background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  box-shadow: inset 0 -2px 0 rgba(255,255,255,0.02);
+}
+
+/* main - centraal, rustig, leesbaar */
+.site-main{
+  grid-area: main;
+  padding:48px 0;
+  color:var(--text);
+}
+.site-main .container{
+  max-width:760px;
+}
+.site-main h2{
+  margin-top:0;
+  font-size:1.6rem;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--accent-2);
+}
+.site-main p{
+  color:var(--muted);
+  line-height:1.6;
+  font-family:var(--sans);
+  margin-top:0.6rem;
+}
+
+/* footer - compact en donker */
+.site-footer{
+  grid-area: footer;
+  background:#060606;
+  color:var(--muted);
+  padding:22px 0;
+  border-top:1px solid rgba(255,255,255,0.03);
+}
+.site-footer p{margin:6px 0; font-family:var(--sans); font-size:0.9rem; text-transform:uppercase; letter-spacing:0.06em}
